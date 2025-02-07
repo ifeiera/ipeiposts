@@ -1,0 +1,142 @@
+![VSCode Amethyst Soft](https://res.cloudinary.com/dzljlz2nn/image/upload/f_auto,q_auto/v1/uploads/j9ypfhcyg9spye4bkecv)
+
+I've always been a **JetBrains** user, but over time, I felt like it wasn't the perfect fit for me. So, I decided to switch things up and give **VSCode** a serious shot. Turns out, it’s pretty awesome—especially with the right extensions and settings!
+
+I wanted my VSCode to have a **vibrant, purple-toned theme**—something colorful but not too overwhelming. After a lot of experimenting, I finally found the perfect balance: a setup that’s visually appealing yet still keeps the focus on coding.
+
+Here’s a breakdown of the extensions and settings I use to make VSCode feel just right.
+
+### Extensions I Use
+
+These are some of the extensions that I personally find super useful:
+
+- [**Bearded Theme**](https://marketplace.visualstudio.com/items?itemName=BeardedBear.beardedtheme): My favorite Color theme for VSCode
+- [**Symbols**](https://marketplace.visualstudio.com/items?itemName=miguelsolorio.symbols): My favorite Icon theme for VSCode
+- [**Indent Rainbow**](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow): Make indentation more readable
+- [**Evondev Palettes**](https://marketplace.visualstudio.com/items?itemName=evondev.indent-rainbow-palettes): Color palette for Indent Rainbow
+- [**Discord Rich Presence**](https://marketplace.visualstudio.com/items?itemName=LeonardSSH.vscord): Shows current project in Discord
+- [**Apc Customize UI++**](https://marketplace.visualstudio.com/items?itemName=drcika.apc-extension): Custom UI
+- [**GlassIt VSC**](https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit): Transparency effect
+- [**Import Cost**](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost): Display package sizes
+- [**Waka Time**](https://marketplace.visualstudio.com/items?itemName=WakaTime.vscode-wakatime): Track coding time
+- [**Biome**](https://marketplace.visualstudio.com/items?itemName=biomejs.biome): Format & Lint code
+- [**Tailwind CSS IntelliSense**](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss): IntelliSense for Tailwind CSS
+- [**Path IntelliSense**](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense): IntelliSense for Tailwind CSS
+- *(I'll update this list as I refine my setup!)*
+
+### My VSCode Settings
+
+Here’s my current `settings.json` configuration:
+
+```json
+{
+    "terminal.integrated.env.windows": {},
+    "terminal.integrated.smoothScrolling": true,
+    "terminal.integrated.fontFamily": "GeistMono Nerd Font",
+    "terminal.integrated.fontSize": 14,
+    "editor.fontFamily": "GeistMono Nerd Font",
+    "editor.inlayHints.fontFamily": "GeistMono Nerd Font",
+    "editor.codeLensFontFamily": "GeistMono Nerd Font",
+    "editor.fontSize": 14,
+    "editor.tabSize": 4,
+    "editor.formatOnSave": true,
+    "editor.renderWhitespace": "all",
+    "editor.minimap.enabled": false,
+    "editor.renderLineHighlight": "none",
+    "editor.scrollbar.horizontal": "hidden",
+    "editor.scrollbar.vertical": "hidden",
+    "editor.scrollbar.horizontalScrollbarSize": 2,
+    "editor.scrollbar.verticalScrollbarSize": 2,
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.inlineSuggest.enabled": true,
+    "editor.stickyScroll.enabled": false,
+    "editor.smoothScrolling": true,
+    "editor.fontLigatures": true,
+    "editor.cursorBlinking": "phase",
+    "editor.accessibilitySupport": "off",
+    "files.autoSave": "onWindowChange",
+    "files.insertFinalNewline": true,
+    "explorer.confirmDragAndDrop": false,
+    "breadcrumbs.enabled": false,
+    "workbench.layoutControl.enabled": false,
+    "workbench.list.smoothScrolling": true,
+    "workbench.colorTheme": "Bearded Theme Black & Amethyst Soft",
+    "workbench.iconTheme": "symbols",
+    "workbench.settings.editor": "json",
+    "scm.inputFontFamily": "GeistMono Nerd Font",
+    "chat.editor.fontFamily": "GeistMono Nerd Font",
+    "debug.console.fontFamily": "GeistMono Nerd Font",
+    "markdown.preview.fontFamily": "GeistMono Nerd Font",
+    // fix css errot tailwind
+    "files.associations": {
+        "*.css": "tailwindcss",
+    },
+    // apc.settings
+    "window.titleBarStyle": "native",
+    "window.customTitleBarVisibility": "never",
+    "apc.activityBar": {
+        "position": "bottom",
+        "hideSettings": true,
+        "size": 28
+    },
+    "apc.header": {
+        "height": 37,
+    },
+    "apc.menubar.compact": true,
+    "apc.electron": {
+        "titleBarStyle": "hidden",
+        "frame": false,
+        "trafficLightPosition": {
+            "x": 12,
+            "y": 10
+        }
+    },
+    "apc.font.family": "GeistMono Nerd Font",
+    "apc.monospace.font.family": "GeistMono Nerd Font",
+    "apc.statusBar": {
+        "position": "editor-bottom",
+        "height": 28,
+        "fontSize": 12
+    },
+    "apc.stylesheet": {
+        ".sidebar > .composite": "height: 12px !important",
+        ".composite.title": "display: block !important",
+        ".monaco-workbench .part.sidebar .title-actions .actions-container": "justify-content: space-evenly !important",
+        ".title-label": "display: none !important",
+        ".title-actions": "display: none !important",
+        ".tabs-and-actions-container > .editor-actions": "display: none !important",
+        ".titlebar-center": "display: none !important",
+        ".titlebar-right": "display: none !important",
+        ".inline-tabs-placeholder": "display: none !important",
+        ".split-view-view .visible": "background-color: #13121f !important",
+    },
+    // discor.rpc
+    "vscord.status.idle.check": false,
+    "vscord.app.name": "Visual Studio Code",
+    "vscord.status.idle.disconnectOnIdle": false,
+    "vscord.status.idle.enabled": false,
+    // indentRainbow
+    "indentRainbow.colors": [
+        "rgba(239, 71, 111,0.15)",
+        "rgba(255, 209, 102,0.15)",
+        "rgba(6, 214, 160, 0.15)",
+        "rgba(17, 138, 178,0.15)",
+        "rgba(7, 59, 76,0.15)",
+        "rgba(7, 59, 76,0.1)",
+        "rgba(7, 59, 76,0.05)",
+        "rgba(7, 59, 76,0.025)"
+    ],
+    "indentRainbow.lightIndicatorStyleLineWidth": 3,
+    "indentRainbow.indicatorStyle": "light",
+    "indentRainbow.excludedLanguages": [
+        "plaintext"
+    ],
+    "powershell.promptToUpdatePowerShell": false,
+    "git.openRepositoryInParentFolders": "never",
+    // glassit
+    "glassit.alpha": 250,
+    "apc.buttons": [],
+}
+```
+
+This setup keeps my coding environment clean, efficient, and easy on the eyes. The **Bearded Theme Black & Amethyst Soft** theme gives my workspace a stylish purple vibe without being too intense. If you have any recommendations or cool extensions I should try, let me know!
