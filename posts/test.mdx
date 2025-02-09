@@ -1,0 +1,156 @@
+![VSCode Amethyst Soft](https://res.cloudinary.com/dzljlz2nn/image/upload/f_auto,q_auto/v1/uploads/j9ypfhcyg9spye4bkecv)
+
+I've always been a **JetBrains** user, but over time, I felt like it wasn't the perfect fit for me. So, I decided to switch things up and give **VSCode** a serious shot. Turns out, it’s pretty awesome—especially with the right extensions and settings!
+
+I wanted my VSCode to have a **vibrant, purple-toned theme**—something colorful but not too overwhelming. After a lot of experimenting, I finally found the perfect balance: a setup that’s visually appealing yet still keeps the focus on coding.
+
+Here’s a breakdown of the extensions and settings I use to make VSCode feel just right.
+
+### Extensions I Use
+
+These are some of the extensions that I personally find super useful:
+
+- [**Bearded Theme**](https://marketplace.visualstudio.com/items?itemName=BeardedBear.beardedtheme): My favorite Color theme for VSCode
+- [**Symbols**](https://marketplace.visualstudio.com/items?itemName=miguelsolorio.symbols): My favorite Icon theme for VSCode
+- [**Indent Rainbow**](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow): Make indentation more readable
+- [**Evondev Palettes**](https://marketplace.visualstudio.com/items?itemName=evondev.indent-rainbow-palettes): Color palette for Indent Rainbow
+- [**Discord Rich Presence**](https://marketplace.visualstudio.com/items?itemName=LeonardSSH.vscord): Shows current project in Discord
+- [**Apc Customize UI++**](https://marketplace.visualstudio.com/items?itemName=drcika.apc-extension): Custom UI
+- [**GlassIt VSC**](https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit): Transparency effect
+- [**Import Cost**](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost): Display package sizes
+- [**Waka Time**](https://marketplace.visualstudio.com/items?itemName=WakaTime.vscode-wakatime): Track coding time
+- [**Biome**](https://marketplace.visualstudio.com/items?itemName=biomejs.biome): Format & Lint code
+- [**Tailwind CSS IntelliSense**](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss): IntelliSense for Tailwind CSS
+- [**Path IntelliSense**](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense): IntelliSense for Tailwind CSS
+- *(I'll update this list as I refine my setup!)*
+
+### My VSCode Settings
+
+Here’s my current `settings.json` configuration:
+
+```typescript
+"use client";
+
+import { RandomTextReveal } from "@/components/ui/random-text-reveal";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { useCallback, useEffect, useState } from "react";
+
+export default function AboutMe() {
+	const [age, setAge] = useState("0.0000");
+	const [detailedAge, setDetailedAge] = useState("");
+	const [isOpen, setIsOpen] = useState(false);
+
+	const calculateAge = useCallback(() => {
+		const birthDate = new Date("2003-09-26");
+		const today = new Date();
+		const diffTime = Math.abs(today.getTime() - birthDate.getTime());
+		const years = diffTime / (1000 * 60 * 60 * 24 * 365.25);
+		return years.toFixed(4);
+	}, []);
+
+	const calculateDetailedAge = useCallback(() => {
+		const birthDate = new Date("2003-09-26");
+		const now = new Date();
+		const diffTime = Math.abs(now.getTime() - birthDate.getTime());
+
+		const years = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365.25));
+		const months = Math.floor(
+			(diffTime % (1000 * 60 * 60 * 24 * 365.25)) /
+				(1000 * 60 * 60 * 24 * 30.44),
+		);
+		const days = Math.floor(
+			(diffTime % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24),
+		);
+		const hours = Math.floor(
+			(diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+		);
+		const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+		const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+
+		return `${years} years, ${months} months, ${days} days\n${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+	}, []);
+
+	useEffect(() => {
+		setAge(calculateAge());
+		setDetailedAge(calculateDetailedAge());
+
+		const interval = setInterval(() => {
+			setAge(calculateAge());
+			setDetailedAge(calculateDetailedAge());
+		}, 50);
+
+		return () => clearInterval(interval);
+	}, [calculateAge, calculateDetailedAge]);
+
+	const handleTooltipInteraction = (open: boolean) => {
+		setIsOpen(open);
+	};
+
+	return (
+		<div className="mt-3 space-y-2">
+			<RandomTextReveal
+				className="text-sm font-normal opacity-40"
+				text="About me"
+				revealTime={1000}
+			/>
+			<div className="text-sm space-y-2">
+				<p>
+					<span className="opacity-70 font-light">Hi, I&apos;m Rendy, </span>
+					<TooltipProvider delayDuration={0}>
+						<Tooltip open={isOpen} onOpenChange={handleTooltipInteraction}>
+							<TooltipTrigger
+								className="cursor-help font-normal opacity-90"
+								onMouseEnter={() => handleTooltipInteraction(true)}
+								onMouseLeave={() => handleTooltipInteraction(false)}
+								onTouchStart={() => handleTooltipInteraction(true)}
+								onTouchEnd={() => handleTooltipInteraction(false)}
+							>
+								{age}
+							</TooltipTrigger>
+							<TooltipContent
+								side="top"
+								sideOffset={4}
+								className="text-black/90 whitespace-pre-line select-none bg-white px-3 py-2 text-xs"
+								onMouseEnter={() => handleTooltipInteraction(true)}
+								onMouseLeave={() => handleTooltipInteraction(false)}
+								onTouchStart={() => handleTooltipInteraction(true)}
+								onTouchEnd={() => handleTooltipInteraction(false)}
+							>
+								{detailedAge}
+							</TooltipContent>
+						</Tooltip>
+					</TooltipProvider>
+					<span className="opacity-70 font-light">
+						-years-old, focused on creative stuff like graphic design, 3D
+						rendering, and video editing. I&apos;m also a full-stack developer
+						currently based in Jakarta/Indonesia.
+					</span>
+				</p>
+				<p>
+					<span className="opacity-70 font-light">I enjoy experimenting with </span>
+					<span className="font-normal opacity-90">anti-cheat systems</span>
+					<span className="opacity-70 font-light"> and </span>
+					<span className="font-normal opacity-90">kernel-level driver</span>
+					<span className="opacity-70 font-light">
+						, exploring the deeper layers of game security.{" "}
+					</span>
+					{/* <span className="bg-foreground hover:bg-transparent transition-colors duration-200 cursor-default select-none">
+                        sryy riot ^^
+                    </span> */}
+				</p>
+				<p className="opacity-70 font-light">
+					When I&apos;m not coding, you can find me playing games or listening
+					to music.
+				</p>
+			</div>
+		</div>
+	);
+}
+```
+
+This setup keeps my coding environment clean, efficient, and easy on the eyes. The **Bearded Theme Black & Amethyst Soft** theme gives my workspace a stylish purple vibe without being too intense. If you have any recommendations or cool extensions I should try, let me know!
